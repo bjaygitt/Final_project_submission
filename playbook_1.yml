@@ -2,11 +2,17 @@
   become: true
   become_user: root
   tasks:
-  - name: install httpd package
-    package: name=httpd state=present
-  - name: start httpd service 
-    service: name=httpd state=started
+  - name: update apt cache
+    apt:
+      update_cache: yes
+    become: yes
+  - name: install Apache HTTP Server
+    apt:
+      name: apache2
+    package: name=apache2 state=present
+  - name: start apache2 service 
+    service: name=apache2 state=started
   - name: Deploy the html code
     copy: src=index.html dest=/var/www/html
-  - name: Restart httpd server
-    service: name=httpd state=restarted
+  - name: Restart apache2 server
+    service: name=apache2 state=restarted
