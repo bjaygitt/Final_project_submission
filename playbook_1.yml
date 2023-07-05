@@ -2,10 +2,11 @@
   become: true
   become_user: root
   tasks:
-  - name: install httpd
-    yum: name=httpd state=present
-  - name: start httpd
+  - name: install httpd package
+    package: name=httpd state=present
+  - name: start httpd service 
     service: name=httpd state=started
-  - name: deploy html file
+  - name: Deploy the html code
     copy: src=index.html dest=/var/www/html
-    notify: restart httpd
+  - name: Restart httpd server
+    service: name=httpd state=restarted
