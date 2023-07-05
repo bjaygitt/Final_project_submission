@@ -9,6 +9,3 @@
   - name: deploy html file
     copy: src=index.html dest=/var/www/html
     notify: restart httpd
-  handlers:
-  - name: restart httpd
-    service: name=httpd state=restarted
