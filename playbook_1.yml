@@ -8,9 +8,9 @@
       update_cache: yes
       cache_valid_time: 3600
   - name: create file
-      file:
-        path: /tmp/docker
-        state: directory
+    file:
+      path: /tmp/docker
+      state: directory
   - name: install Apache HTTP Server
     apt:
       name: apache2
@@ -30,12 +30,12 @@
         - Dockerfile
         - index.html
   - name: build image
-      docker_image:
-        name: timojeaga
-        tag: v1.0
-        source: build
-        build:
-          path: /tmp/docker/
-          dockerfile: Dockerfile
+    docker_image:
+      name: timojeaga
+      tag: v1.0
+      source: build
+      build:
+        path: /tmp/docker/
+        dockerfile: Dockerfile
  
     
