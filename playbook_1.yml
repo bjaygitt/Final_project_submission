@@ -2,15 +2,11 @@
   become: true
   become_user: root
   tasks:
-  - name: update apt cache
-    apt:
-      update_cache: yes
-    become: yes
   - name: install python3-docker
-      apt:
-        name: python3-docker
-        update_cache: yes
-        cache_valid_time: 3600
+    apt:
+      name: python3-docker
+      update_cache: yes
+      cache_valid_time: 3600
   - name: create file
       file:
         path: /tmp/docker
