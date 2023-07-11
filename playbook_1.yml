@@ -6,6 +6,15 @@
     apt:
       update_cache: yes
     become: yes
+  - name: install python3-docker
+      apt:
+        name: python3-docker
+        update_cache: yes
+        cache_valid_time: 3600
+  - name: create file
+      file:
+        path: /tmp/docker
+        state: directory
   - name: install Apache HTTP Server
     apt:
       name: apache2
@@ -16,3 +25,21 @@
     copy: src=index.html dest=/var/www/html
   - name: Restart apache2 server
     service: name=apache2 state=restarted
+  - name: copy files
+      copy:
+        src: "/var/lib/jenkins/workspace/ansibleplaybook/{{ item }}"
+        dest: /tmp/docker
+        owner: ubuntu
+      with_items:
+        - Dockerfile
+        - index.html
+  - name: build image
+      docker_image:
+        name: timojeaga
+        tag: v1.0
+        source: build
+        build:
+          path: /tmp/docker/
+          dockerfile: Dockerfile
+ 
+    
