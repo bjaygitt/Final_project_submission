@@ -29,5 +29,16 @@
     with_items:
       - Dockerfile
       - index.html
- 
+  - name: Buile image
+    docker_image:
+      name: Timojeaga
+      tag: v1.0
+      source: build 
+      build:
+        path: /tmp/docker
+        dockerfile: Dockerfile
+        
+      
+    
+    
     
