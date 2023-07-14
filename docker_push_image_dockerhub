@@ -10,11 +10,4 @@
       docker_login:
         username: timojeaga
         password: Jayden123&
-        build:
-          path: /opt/docker
-          pull: true
-          tag: "latest"
-          force_tag: yes
-          repository: timojeaga/timojeaga
-          push: yes
-          source: build
+       
