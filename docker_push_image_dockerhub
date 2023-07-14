@@ -11,7 +11,7 @@
         username: timojeaga
         password: Jayden123&
         build:
-          path: /opt/docker
+          src: /opt/docker
           pull: true
           state: present
           tag: "latest"
