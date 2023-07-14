@@ -36,9 +36,9 @@
       source: build 
       build:
         path: /tmp/docker
-   docker_image:
-     name: timojeaga/timojeaga
-     push: yes
+    docker_image:
+      name: timojeaga/timojeaga
+      push: yes
 
 
 
