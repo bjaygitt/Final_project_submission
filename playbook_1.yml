@@ -37,7 +37,6 @@
       build:
         path: /tmp/docker
         dockerfile: Dockerfile
-  - name: Push Docker image to Docker Hub
     tasks:
       - name: Log in to Docker Hub
         docker_login:
@@ -47,7 +46,7 @@
         docker_image: 
         name: timojeaga
         build:
-          context: /tmp/docker
+        context: /tmp/docker
         push: yes
       - name: Log out from Docker Hub
         docker_login:
