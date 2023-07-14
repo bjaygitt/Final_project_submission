@@ -6,6 +6,10 @@
     - name: Push Docker image to docker hub
       docker_image:
         name: timojeaga
+    - name: Log in to Docker Hub
+      docker_login:
+        username: timojeaga
+        password: Jayden123&
         build:
           path: /opt/docker
           pull: true
