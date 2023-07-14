@@ -3,8 +3,7 @@
   become: true
   gather_facts: false
   tasks:
-  tasks:
-    - name: Log in to Docker Hub
+    - name: log in to Docker Hub
       docker_login:
         username: timojeaga
         password: Jayden123&
