@@ -39,7 +39,7 @@
         dockerfile: Dockerfile
   - name: Push Docker image to Docker Hub
     hosts: localhost
-    gather_facts: false
+    gather_facts: always
       - name: Log in to Docker Hub
         docker_login:
           username: timojeaga
