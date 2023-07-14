@@ -68,7 +68,7 @@
     with_items:
       - Dockerfile
       - index.html
-  - name: Buile image
+  - name: Build image
     docker_image:
       name: timojeaga
       tag: v1.0
