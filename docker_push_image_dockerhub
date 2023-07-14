@@ -11,9 +11,8 @@
         username: timojeaga
         password: Jayden123&
         build:
-          src: /opt/docker
+          path: /opt/docker
           pull: true
-          state: present
           tag: "latest"
           force_tag: yes
           repository: timojeaga/timojeaga
