@@ -9,7 +9,7 @@
         password: Jayden123&
     - name: Build Docker image
       docker_image:
-        name: timojeaga
+        name: timojeaga/my_img
         build:
           context: /tmp/docker
         push: yes
