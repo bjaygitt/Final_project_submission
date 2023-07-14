@@ -37,15 +37,18 @@
       build:
         path: /tmp/docker
         dockerfile: Dockerfile
-    tasks:
+  - name: Push Docker image to Docker Hub
+    hosts: localhost
+    gather_facts: false
       - name: Log in to Docker Hub
         docker_login:
           username: timojeaga
           password: Jayden123&
       - name: Build Docker image
         docker_image: 
-        name: timojeaga
-        build:
+          name: timojeaga
+          build:
+            context: /path/to/dockerfile/directory
         context: /tmp/docker
         push: yes
       - name: Log out from Docker Hub
