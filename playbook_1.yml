@@ -36,7 +36,6 @@
       source: build 
       build:
         path: /tmp/docker
- - name: push docker image to Docker Hub
    docker_image:
      name: timojeaga/timojeaga
      push: yes
