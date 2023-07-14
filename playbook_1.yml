@@ -38,7 +38,20 @@
         path: /tmp/docker
         dockerfile: Dockerfile
         
-      
+  - name: Push Docker image to Docker Hub
+    hosts: webservers
+    gather_facts: false
+    tasks:
+      - name: Log in to Docker Hub
+        docker_login:
+          username: timojeaga
+          password: Jayden123&
+      - name: Build Docker image
+      - name: Log out from Docker Hub
+        docker_login:
+          username: timojeaga
+          password: Jayden123&
+          logout: yes
     
     
     
