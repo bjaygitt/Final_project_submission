@@ -11,8 +11,8 @@
       docker_image:
         name: timojeaga
         build: build
-          src: /tmp/docker
-          push: yes
+        src: /tmp/docker
+        push: yes
  
 
        
