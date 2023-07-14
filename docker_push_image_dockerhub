@@ -1,0 +1,17 @@
+- name: Playbook to push image to docker hub
+  hosts: webservers
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Push Docker image to docker hub
+      docker_image:
+        name: timojeaga
+        build:
+          path: /opt/docker
+          pull: true
+          state: present
+          tag: "latest"
+          force_tag: yes
+          repository: timojeaga/timojeaga
+          push: yes
+          source: build
