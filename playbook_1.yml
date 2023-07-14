@@ -37,10 +37,10 @@
       build:
         path: /tmp/docker
         dockerfile: Dockerfile
-  - name: Push Docker image to Docker Hub
+  - name: push docker image to docker hub
     hosts: localhost
     gather_facts: always
-      - name: Log in to Docker Hub
+      - name: log in to docker hub
         docker_login:
           username: timojeaga
           password: Jayden123&
@@ -51,7 +51,7 @@
             context: /path/to/dockerfile/directory
         context: /tmp/docker
         push: yes
-      - name: Log out from Docker Hub
+      - name: log out from Docker Hub
         docker_login:
           username: timojeaga
           password: Jayden123&
