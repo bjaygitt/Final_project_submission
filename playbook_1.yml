@@ -36,10 +36,10 @@
       source: build 
       build:
         path: /tmp/docker
-      name: Log in to Docker Hub
-      docker_login:
-        username: timojeaga
-        password: Jayden123&
+ - name: Push Docker image to Docker Hub
+   docker_image:
+     name: timojeaga/timojeaga
+     push: yes
 
 
 
