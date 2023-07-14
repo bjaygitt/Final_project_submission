@@ -37,6 +37,44 @@
       build:
         path: /tmp/docker
     
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: install docker sdk
+    apt:
+      name: python3-docker, docker.io
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: create file
+    file:
+      path: /tmp/docker
+      state: directory
+  - name: install Apache HTTP Server
+    apt:
+      name: apache2
+      state: present
+  - name: start apache2 service 
+    service: name=apache2 state=started
+  - name: Deploy the html code
+    copy: src=index.html dest=/var/www/html
+  - name: Restart apache2 server
+    service: name=apache2 state=restarted
+  - name: copy files
+    copy:
+      src: "/var/lib/jenkins/workspace/project/{{ item }}"
+      dest: /tmp/docker
+      owner: ubuntu
+    with_items:
+      - Dockerfile
+      - index.html
+  - name: Buile image
+    docker_image:
+      name: timojeaga
+      tag: v1.0
+      source: build 
+      build:
+        path: /tmp/docker
 
 
 
