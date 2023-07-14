@@ -37,8 +37,7 @@
       build:
         path: /tmp/docker
   - name: Push Docker image to Docker Hub
-    hosts: localhost
-    gather_facts: false
+
 
   
     
