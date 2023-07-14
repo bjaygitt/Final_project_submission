@@ -36,6 +36,10 @@
       source: build 
       build:
         path: /tmp/docker
+      name: Log in to Docker Hub
+      docker_login:
+        username: timojeaga
+        password: Jayden123&
 
 
 
