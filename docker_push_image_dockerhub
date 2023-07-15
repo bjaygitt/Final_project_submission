@@ -7,9 +7,6 @@
       docker_login:
         username: timojeaga
         password: Jayden123&
-    - name: Build Docker image
-      docker_image:
-        name: timojeaga
         
  
 
