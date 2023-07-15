@@ -10,9 +10,7 @@
     - name: Build Docker image
       docker_image:
         name: timojeaga
-        build: build
-        src: /tmp/docker
-        push: yes
+        
  
 
        
