@@ -6,10 +6,15 @@ pipeline{
                 git branch: 'main', credentialsId: 'AnsibleHost', url: 'https://github.com/Timojeaga/Project1.git'
             }
         }
-        stage("Run ansible playbook"){
+        stage("Run ansible playbook_1"){
            steps{
                 ansiblePlaybook credentialsId: 'AnsibleHost', disableHostKeyChecking: true, installation: 'myansible', inventory: 'dev.inv', playbook: 'playbook_1.yml'              
             }    
-        }    
+        }
+        stage("Run ansible playbook_2"){
+           steps{
+                ansiblePlaybook credentialsId: 'AnsibleHost', disableHostKeyChecking: true, installation: 'myansible', inventory: 'dev.inv', playbook: 'docker_push_image_dockerhub'
+            }
+        }
     }
 }
