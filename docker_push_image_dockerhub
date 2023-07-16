@@ -10,7 +10,7 @@
     - name: Tag and push to docker hub
       docker_image:
         name: timojeaga
-        src: "/var/lib/jenkins/workspace/project/{{ item }}"
+        src: /tmp/docker
         tag: V1.0
         push: yes
         
