@@ -10,7 +10,7 @@
     - name: Tag and push to docker hub
       docker_image:
         name: timojeaga
-        repository: timojeaga/timojeaga
+        src: otp/docker
         tag: V1.0
         push: yes
         
