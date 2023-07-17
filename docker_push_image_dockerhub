@@ -7,6 +7,12 @@
       docker_login:
         username: timojeaga
         password: Jayden123&
+    - name: Push Docker image to Docker Hub
+      docker_image:
+        name: timojeag/myapp
+        tag: v1.0
+        push: yes
+        source: local
      
 
         
