@@ -9,6 +9,7 @@
         password: Jayden123&
 - name: Tag and push to docker hub
   community.docker.docker_image:
+    name: ubuntu
     repository: timojeaga/myimage:7.56
     push: true
     source: local
