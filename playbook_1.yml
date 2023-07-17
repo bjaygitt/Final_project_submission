@@ -4,8 +4,9 @@
   tasks:
   - name: install docker sdk
     apt:
-      name: python3-docker, docker.io
+      name: python3-pip, docker.io
       update_cache: yes
+      state: present
       cache_valid_time: 3600
   - name: create file
     file:
@@ -43,9 +44,10 @@
   tasks:
   - name: install docker sdk
     apt:
-      name: python3-docker, docker.io
-      update_cache: yes
-      cache_valid_time: 3600
+      name: python3-docker
+      pip:
+      name: docker
+      state: present
   - name: create file
     file:
       path: /tmp/docker
