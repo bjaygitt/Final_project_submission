@@ -5,14 +5,15 @@
   tasks:
     - name: log in to Docker Hub
       docker_login:
-        username: timojeaga
+        username: timojeaga2wwaqqqqa
         password: Jayden123&
-    - name: Tag and push to docker hub
-      docker_image:
-        name: timojeaga
-        src: /tmp/docker
-        tag: V1.0
-        push: yes
+- name: Tag and push to docker hub
+  docker_image:
+    name: timojeaga
+    repository: timojeaga/myimage:7.56
+    push: yes
+    source: local
+
         
  
 
