@@ -11,8 +11,8 @@
       docker_image:
         name: timojeag/myapp
         tag: v1.0
-        - push: yes
-          source: local
+    - push: yes
+      source: local
      
 
         
