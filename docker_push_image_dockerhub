@@ -12,7 +12,7 @@
         name: timojeag/myapp
         tag: v1.0
         push: yes
-        source: local
+        source: "local"
      
 
         
