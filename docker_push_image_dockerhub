@@ -11,8 +11,8 @@
       docker_image:
         name: timojeaga
         repository: timojeaga/timojeaga
-        pull: yes
-        source: /tmp/docker
+        push: yes
+        source: tmp/docker
 
         
  
