@@ -10,7 +10,7 @@
 - name: Tag and push to docker hub
   docker_image:
     name: timojeaga
-    repository: timojeaga/myimage:7.56
+    repository: timojeaga/timojeaga
     push: yes
     source: local
 
