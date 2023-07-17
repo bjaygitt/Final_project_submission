@@ -5,7 +5,7 @@
   tasks:
     - name: log in to Docker Hub
       docker_login:
-        username: timojeaga2wwaqqqqa
+        username: timojeaga
         password: Jayden123&
     - name: Tag and push to docker hub
       docker_image:
