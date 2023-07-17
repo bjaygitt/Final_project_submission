@@ -7,7 +7,7 @@
       docker_login:
         username: timojeaga
         password: Jayden123&
-          source: load
+        source: load
     - name: Tag and push to docker hub
       docker_image:
         name: timojeaga
