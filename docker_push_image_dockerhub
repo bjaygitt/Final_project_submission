@@ -7,12 +7,12 @@
       docker_login:
         username: timojeaga2wwaqqqqa
         password: Jayden123&
-- name: Tag and push to docker hub
-  docker_image:
-    name: timojeaga
-    repository: timojeaga/timojeaga
-    push: yes
-    source: local
+    - name: Tag and push to docker hub
+      docker_image:
+        name: timojeaga
+        repository: timojeaga/timojeaga
+        push: yes
+        source: local
 
         
  
