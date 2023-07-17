@@ -12,7 +12,7 @@
         name: timojeaga
         repository: timojeaga/timojeaga
         push: yes
-        source: local
+        source: /tmp/docker
 
         
  
