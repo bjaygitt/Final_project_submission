@@ -7,10 +7,11 @@
       docker_login:
         username: timojeaga
         password: Jayden123&
+  tasks:
     - name: creating docker image
       command: docker build -t timojeaga:myproject
       args:
-      chdir: /tmp/docker
+        chdir: /tmp/docker
     - name: adding tag to image
       command: docker tag ansible-docker image timojeaga/timojeaga:myproject
     - name: push image to dockerhub
