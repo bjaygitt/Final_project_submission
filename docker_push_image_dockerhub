@@ -14,7 +14,7 @@
     - name: adding tag to image
       command: docker tag myproject timojeaga/myproject
     - name: push image to dockerhub
-      command: docker push myproject timojeaga/myproject
+      command: docker push timojeaga/myproject
 
 
      
