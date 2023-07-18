@@ -9,7 +9,7 @@
         password: Jayden123&
   tasks:
     - name: creating docker image
-      command: docker build -t timojeaga:myproject
+      command: docker build --t timojeaga:myproject
       args:
         chdir: /tmp/docker
     - name: adding tag to image
