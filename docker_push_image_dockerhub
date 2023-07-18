@@ -3,10 +3,14 @@
   become: true
   gather_facts: false
   tasks:
+    - name: creating docker image
+      command: docker build -t Dockerfile:myproject
+      args:
+        chdir: /tmp/docker
     - name: log in to Docker Hub
       docker_login:
         username: timojeaga
-        password: Jayden123&
+        password: Jayden123&    
     - name: adding tag to image
       command: docker tag timojeaga timojeaga/timojeaga
     - name: push image to dockerhub
