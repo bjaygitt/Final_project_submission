@@ -7,17 +7,17 @@
       docker_login:
         username: timojeaga
         password: Jayden123&
-- name: creating docker image
-  command: docker build -t timojeaga:myproject
-  args:
-    chdir: /tmp/docker
-- name: adding tag to image
-  command: docker tag ansible-docker image timojeaga/timojeaga:myproject
-- name: push image to dockerhub
-  command: docker push timojeaga/timojeaga:myproject
-- name: removing images from local
-  command: docker rmi ansible-docker-image timojeaga/ansible-docker-image
-  ignore_errors: yes
+    - name: creating docker image
+      command: docker build -t timojeaga:myproject
+      args:
+      chdir: /tmp/docker
+    - name: adding tag to image
+      command: docker tag ansible-docker image timojeaga/timojeaga:myproject
+    - name: push image to dockerhub
+      command: docker push timojeaga/timojeaga:myproject
+    - name: removing images from local
+      command: docker rmi ansible-docker-image timojeaga/ansible-docker-image
+      ignore_errors: yes
 
 
 
