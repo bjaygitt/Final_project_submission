@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: creating docker image
-      command: docker build -t dockerfile
+      command: docker build -t Dockerfile .
       args:
         chdir: /tmp/docker
     - name: log in to Docker Hub
