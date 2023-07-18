@@ -12,12 +12,10 @@
         username: timojeaga
         password: Jayden123&    
     - name: adding tag to image
-      command: docker tag timojeaga timojeaga/timojeaga
+      command: docker tag myproject timojeaga/myproject
     - name: push image to dockerhub
-      command: docker push timojeaga timojeaga/timojeaga 
+      command: docker push myproject timojeaga/myproject
     - name: removing images from local
-      command: docker rmi timojeaga
-      ignore_errors: yes
 
 
 
