@@ -8,7 +8,7 @@
         username: timojeaga
         password: Jayden123&
     - name: adding tag to image
-      command: docker tag ansible-docker image timojeaga/timojeaga:myproject
+      command: docker tag image timojeaga/timojeaga:myproject
     - name: push image to dockerhub
       command: docker push timojeaga/timojeaga:myproject
     - name: removing images from local
