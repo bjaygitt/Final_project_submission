@@ -8,11 +8,11 @@
         username: timojeaga
         password: Jayden123&
     - name: adding tag to image
-      command: docker tag image timojeaga/timojeaga
+      command: docker tag timojeaga/timojeaga
     - name: push image to dockerhub
       command: docker push timojeaga/timojeaga
     - name: removing images from local
-      command: docker rmi ansible-docker-image timojeaga
+      command: docker rmi timojeaga/timojeaga
       ignore_errors: yes
 
 
