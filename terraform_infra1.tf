@@ -1,7 +1,5 @@
 provider "aws" {
-  region     = "us-west-2"
-  access_key = ""
-  secret_key = ""
+  region     = "us-east-1"
 }
 
 resource "aws_instance" "mytest_terraform" {
@@ -13,5 +11,4 @@ resource "aws_instance" "mytest_terraform" {
   }
   count = 3
 }
-~
 
