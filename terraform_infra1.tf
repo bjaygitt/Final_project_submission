@@ -1,8 +1,7 @@
-
 provider "aws" {
-  region = "us-east-1"
-  shared_credential_files = ["~/.aws/credentials"]
-   profile = "default"
+ region = "us-east-1"
+ shared_credential_files = ["~/.aws/credentials"]
+ profile = "default"
 }
   access_key = "var.access_key"
   secret_key = "var.secret_key"
