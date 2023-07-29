@@ -1,6 +1,7 @@
 provider "aws" {
  region = "us-east-1"
- profile = "default"
+ shared_credential_files = "~/.aws/credentials"
+ profile = "default" 
 }
 resource "aws_instance" "mytest_terraform" {
   ami = "ami-03f65b8614a860c29"
