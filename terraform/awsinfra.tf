@@ -1,6 +1,6 @@
 provider "aws" {
  region     = "ca-central-1"
- shared_credentials_files = ["~/.aws/credentials"]
+ shared_credentials_file = ["~/.aws/credentials"]
  profile = "default"
 }
 
