@@ -1,7 +1,6 @@
 provider "aws" {
  region     = "ca-central-1"
- shared_credentials_file = ["~/.aws/credentials"]
- profile = "default"
+ shared_credentials_files = ["~/.aws/credentials"]
 }
 
 resource "aws_instance" "myec2" {
