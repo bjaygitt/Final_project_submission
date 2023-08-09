@@ -13,7 +13,7 @@ pipeline{
         }
         stage("Run ansible playbook_2"){
            steps{
-                ansiblePlaybook credentialsId: 'AnsibleHost', disableHostKeyChecking: true, installation: 'myansible', inventory: 'dev.inv', playbook: 'docker_push_image_dockerhub'
+                ansiblePlaybook credentialsId: 'AnsibleHost', disableHostKeyChecking: true, installation: 'myansible', inventory: 'dev.inv', playbook: 'Docker_push_Image'
             }
         }
     }
