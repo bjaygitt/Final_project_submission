@@ -15,7 +15,7 @@ variable "env_2" {
 }
 
 variable "tag_count" {
-  description = "Number of instances and tags to create"
+  description = "3"
 }
 
 
