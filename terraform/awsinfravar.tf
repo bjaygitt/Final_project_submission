@@ -1,21 +1,21 @@
 variable "ami" {
-  description = "ami-0ea18256de20ecdfc"
+  default= "ami-0ea18256de20ecdfc"
 }
 
 variable "instance_type" {
-  description = "t3.micro"
+  default= "t3.micro"
 }
 
 variable "env_1" {
-  description = "dev"
+  default= "dev"
 }
 
 variable "env_2" {
-  description = "prod"
+  default = "prod"
 }
 
 variable "tag_count" {
-  description = "3"
+  default= "3"
 }
 
 
