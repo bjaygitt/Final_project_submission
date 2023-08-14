@@ -9,13 +9,13 @@ default = "t3.micro"
 
 }
 
-variable "env" {
+variable "env_1" {
 
 default = "dev"
 
 }
 
-variable "env" {
+variable "env_2" {
 
 default = "prod"
 
