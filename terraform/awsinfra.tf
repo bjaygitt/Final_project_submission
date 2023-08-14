@@ -11,8 +11,8 @@ count = var.tag_count
   
   dynamic "tags" {
     for_each = {
-      var.env_1 => count.index,
-      var.env_2 => count.index,
+      var.env_1 = count.index,
+      var.env_2 = count.index,
     }
     content {
       Name = "${tags.key}-${tags.value}"
