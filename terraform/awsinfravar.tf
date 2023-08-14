@@ -11,6 +11,7 @@ default = "t3.micro"
 
 variable "env" {
 
-default = ["prod" \n "QA"]
+default = "prod"
+default = "QA"
 
 }
