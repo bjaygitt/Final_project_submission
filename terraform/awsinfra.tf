@@ -10,8 +10,8 @@ resource "aws_instance" "myec2" {
 
   count = 3
 
-  tags  = {
-    env = env_1
+  tags = {
+    env  = var.env_1
     Name = "${var.env_1}-${count.index}"
   }
 }
