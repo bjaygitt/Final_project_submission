@@ -15,7 +15,7 @@ default = "Prod"
 
 }
 
-variable "env_2" {
+variable "env_1" {
 
 default = "dev"
 
