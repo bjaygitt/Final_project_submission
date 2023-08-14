@@ -15,3 +15,11 @@ default = "dev"
 
 }
 
+}
+
+variable "env" {
+
+default = "prod"
+
+}
+
