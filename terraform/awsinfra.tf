@@ -7,16 +7,23 @@ provider "aws" {
 resource "aws_instance" "myec2" {
   ami           = var.ami
   instance_type = var.instance_type
-count = var.tag_count
-  
-  dynamic "tags" {
+  count         = var.tag_count
+
+  tags = dynamic("tags", {
     for_each = {
-      var.env_1 = count.index,
-      var.env_2 = count.index,
+      for idx in range(var.tag_count) :
+      "${var.env_1}-${idx}" => {
+        Name = "${var.env_1}-${idx}"
+      },
+      for idx in range(var.tag_count) :
+      "${var.env_2}-${idx}" => {
+        Name = "${var.env_2}-${idx}"
+      }
     }
     content {
-      Name = "${tags.key}-${tags.value}"
+      key   = tags.key
+      value = tags.value
     }
-  }
+  })
 }
 
