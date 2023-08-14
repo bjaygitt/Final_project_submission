@@ -1,24 +1,21 @@
 variable "ami" {
-
-default = "ami-0ea18256de20ecdfc"
+  description = "ami-0ea18256de20ecdfc"
 }
 
 variable "instance_type" {
-
-default = "t3.micro"
-
+  description = "t3.micro"
 }
 
 variable "env_1" {
-
-default = "dev"
-
+  description = "dev"
 }
 
 variable "env_2" {
+  description = "prod"
+}
 
-default = "prod"
-
+variable "tag_count" {
+  description = "Number of instances and tags to create"
 }
 
 
