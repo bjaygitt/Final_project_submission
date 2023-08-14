@@ -11,13 +11,13 @@ resource "aws_instance" "myec2" {
 
   tags = dynamic("tags", {
     for_each = {
-      for idx in range(var.tag_count) :
-      "${var.env_1}-${idx}" => {
-        Name = "${var.env_1}-${idx}"
+      for i in range(var.tag_count) :
+      "${var.env_1}-${i}" => {
+        Name = "${var.env_1}-${i}"
       },
-      for idx in range(var.tag_count) :
-      "${var.env_2}-${idx}" => {
-        Name = "${var.env_2}-${idx}"
+      for i in range(var.tag_count) :
+      "${var.env_2}-${i}" => {
+        Name = "${var.env_2}-${i}"
       }
     }
     content {
