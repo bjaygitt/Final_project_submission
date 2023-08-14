@@ -9,21 +9,30 @@ resource "aws_instance" "myec2" {
   instance_type = var.instance_type
   count         = var.tag_count
 
-  tags = dynamic("tags", {
+  dynamic "tags" {
     for_each = {
-      for i in range(var.tag_count) :
-      "${var.env_1}-${i}" => {
-        Name = "${var.env_1}-${i}"
-      },
-      for i in range(var.tag_count) :
-      "${var.env_2}-${i}" => {
-        Name = "${var.env_2}-${i}"
+      for idx in range(var.tag_count) :
+      "${var.env_1}-${idx}" => {
+        Name = "${var.env_1}-${idx}"
       }
     }
     content {
       key   = tags.key
-      value = tags.value
+      value = tags.value.Name
     }
-  })
+  }
+
+  dynamic "tags" {
+    for_each = {
+      for idx in range(var.tag_count) :
+      "${var.env_2}-${idx}" => {
+        Name = "${var.env_2}-${idx}"
+      }
+    }
+    content {
+      key   = tags.key
+      value = tags.value.Name
+    }
+  }
 }
 
