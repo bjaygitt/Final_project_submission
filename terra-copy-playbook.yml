@@ -2,10 +2,14 @@ name: Copy files to Terraform-provisioned hosts
   hosts: dev 
   become: yes 
   tasks:
-    - name: Copy files
+    - name: copy files
       copy:
-        src: /path/to/local/file  # Path to the file on your local machine
-        dest: /path/on/remote/host  # Destination path on the remote host
+      src: "/var/lib/jenkins/workspace/ansibleplaybook/{{ item }}"
+      dest: /tmp/docker
+      owner: ubuntu
+    with_items:
+      - Dockerfile
+      - index.html
         remote_src: yes  # Set to yes to indicate the source is on the remote host
 
       # You can also set other options like file permissions and owner/group
