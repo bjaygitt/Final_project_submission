@@ -4,14 +4,26 @@ provider "aws" {
  profile = "default"
 }
 
+variable "envs" {
+  type    = list(string)
+  default = ["dev", "qa", "prod"]
+}
+
 resource "aws_instance" "myec2" {
   ami           = var.ami
   instance_type = var.instance_type
 
-  count = 3
+  count = length(var.envs)
 
   tags = {
-    env  = var.env
-    Name = "${var.env}-${count.index}
+    Name = "${var.envs[count.index]}-instance"
+    
+    dynamic "Environment" {
+      for_each = var.ens
+      content {
+        key   = "Environment"
+        value = Environment.key
+      }
+    }
   }
 }
