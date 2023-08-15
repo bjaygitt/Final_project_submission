@@ -6,7 +6,7 @@ provider "aws" {
 
 variable "envs" {
   type    = list(string)
-  default = ["dev", "qa", "prod"]
+  default = "dev"
 }
 
 resource "aws_instance" "myec2" {
@@ -20,6 +20,6 @@ resource "aws_instance" "myec2" {
   tags = {
     envs  = var.envs
     Name = "${var.envs}-${count.index}
-    }
   }
+}
 
