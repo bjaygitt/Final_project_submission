@@ -5,7 +5,6 @@ provider "aws" {
 }
 
 variable "envs" {
-  type    = list(string)
   default = "dev"
 }
 
