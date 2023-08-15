@@ -15,15 +15,20 @@ resource "aws_instance" "myec2" {
 
   count = length(var.envs)
 
-  tags = {
-    Name = "${var.envs[count.index]}-instance"
-    
-    dynamic "Environment"= {
-      for_each = var.envs
-      content {
-        key   = "Environment"
-        value = Environment.key
-      }
+  dynamic "tags" {
+    for_each = var.envs
+    content {
+      key   = "Name"
+      value = "${tags.value}-instance"
+    }
+  }
+
+  dynamic "tags" {
+    for_each = var.envs
+    content {
+      key   = "Environment"
+      value = tags.value
     }
   }
 }
+
