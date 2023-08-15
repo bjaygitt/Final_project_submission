@@ -20,5 +20,6 @@ resource "aws_instance" "myec2" {
     envs  = var.envs
     Name = "${var.envs}-${count.index}"
   }
+ }
 }
 
