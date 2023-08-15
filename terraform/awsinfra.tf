@@ -23,13 +23,11 @@ resource "aws_instance" "myec2" {
     }
   }
 
-  dynamic "tags" {
+  dynamic "environment_tags" {
     for_each = var.envs
     content {
       key   = "Environment"
-      value = tags.value
+      value = environment_tags.key
     }
   }
 }
-
-
