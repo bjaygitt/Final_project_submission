@@ -12,12 +12,10 @@ resource "aws_instance" "myec2" {
   ami           = var.ami
   instance_type = var.instance_type
 
-  count = 2
+  count = 3
 
   tags = {
-    envs  = var.envs
-    Name = "${var.envs}-${count.index}"
+    env  = var.env
+    Name = "${var.env}-${count.index}
   }
- }
 }
-
