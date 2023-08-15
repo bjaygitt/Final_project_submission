@@ -18,7 +18,7 @@ resource "aws_instance" "myec2" {
   tags = {
     Name = "${var.envs[count.index]}-instance"
     
-    dynamic "Environment" {
+    dynamic "Environment"= {
       for_each = var.envs
       content {
         key   = "Environment"
