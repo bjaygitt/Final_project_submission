@@ -1,0 +1,26 @@
+name: Copy files to Terraform-provisioned hosts
+  hosts: dev 
+  become: yes 
+  tasks:
+    - name: Copy files
+      copy:
+        src: /path/to/local/file  # Path to the file on your local machine
+        dest: /path/on/remote/host  # Destination path on the remote host
+        remote_src: yes  # Set to yes to indicate the source is on the remote host
+
+      # You can also set other options like file permissions and owner/group
+      # mode: 0644
+      # owner: some_user
+      # group: some_group
+
+Replace your_target_hosts with the appropriate group or individual hosts as defined in your Ansible inventory.
+
+Save this playbook to a file (e.g., copy_files.yml), and then run it using the ansible-playbook command:
+
+sh
+
+ansible-playbook copy_files.yml
+
+Make sure you have Ansible installed and configured with SSH keys or passwords to access the remote hosts.
+
+Remember that Ansible and Terraform can work together, but they serve different purposes. Terraform provisions and manages infrastructure, while Ansible is primarily used for configuration management and automation on existing infrastructure. If you need to perform actions like software installation or configuration after provisioning with Terraform, Ansible can be a great choice.
