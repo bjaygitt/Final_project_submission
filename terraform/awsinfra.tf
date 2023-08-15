@@ -14,7 +14,7 @@ resource "aws_instance" "myec2" {
 
   count = 2
 
-  dynamic "envs" {
+  dynamic "tags" {
     for_each = var.envs
   tags = {
     envs  = var.envs
