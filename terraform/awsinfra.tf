@@ -4,10 +4,6 @@ provider "aws" {
  profile = "default"
 }
 
-variable "envs" {
-  default = "dev"
-}
-
 resource "aws_instance" "myec2" {
   ami           = var.ami
   instance_type = var.instance_type
