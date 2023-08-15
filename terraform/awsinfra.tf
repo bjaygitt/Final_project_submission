@@ -18,7 +18,7 @@ resource "aws_instance" "myec2" {
     for_each = var.envs
   tags = {
     envs  = var.envs
-    Name = "${var.envs}-${count.index}
+    Name = "${var.envs}-${count.index}"
   }
 }
 
