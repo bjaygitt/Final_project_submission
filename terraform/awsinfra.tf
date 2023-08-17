@@ -16,7 +16,7 @@ resource "aws_instance" "myec2" {
   }
 }
 
-resource "aws_instance" "myec2" {
+resource "aws_instance" "myec2_1" {
   ami_1           = var.ami_1
   instance_type_1 = var.instance_type_1
 
