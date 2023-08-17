@@ -15,3 +15,15 @@ resource "aws_instance" "myec2" {
     Name = "${var.env}-${count.index}"
   }
 }
+
+resource "aws_instance" "myec2" {
+  ami           = var.ami
+  instance_type = var.instance_type
+
+  count = 1
+
+  tags = {
+    env_1  = var.env_1
+    Name = "${var.env_1}-${count.index}"
+  }
+}
