@@ -8,7 +8,7 @@ resource "aws_instance" "myec2" {
   ami           = var.ami
   instance_type = var.instance_type
 
-  count = 3
+  count = 1
 
   tags = {
     env  = var.env
