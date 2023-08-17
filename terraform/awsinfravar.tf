@@ -13,7 +13,7 @@ variable "env" {
 default = "dev"
 }
 
-variable "ami" {
+variable "ami_1" {
 
 default = "ami-0ea18256de20ecdfc"
 }
