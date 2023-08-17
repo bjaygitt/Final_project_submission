@@ -18,7 +18,7 @@ resource "aws_instance" "myec2" {
 
 resource "aws_instance" "myec2" {
   ami           = var.ami
-  instance_type1 = var.instance_type1
+  instance_type_1 = var.instance_type_1
 
   count = 1
 
