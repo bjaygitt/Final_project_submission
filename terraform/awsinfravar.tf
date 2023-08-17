@@ -18,7 +18,7 @@ variable "ami" {
 default = "ami-0ea18256de20ecdfc"
 }
 
-variable "instance_type" {
+variable "instance_type_1" {
 
 default = "t3.micro"
 
