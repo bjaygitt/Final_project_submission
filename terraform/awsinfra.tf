@@ -1,7 +1,7 @@
 provider "aws" {
- region     = "ca-central-1"
- shared_credentials_files = ["/home/jenkins/.aws/credentials"]
- profile = "default"
+region     = "ca-central-1"
+shared_credentials_files = ["/home/ubuntu/.aws/credentials"]
+profile = "default"
 }
 
 resource "aws_instance" "myec2" {
