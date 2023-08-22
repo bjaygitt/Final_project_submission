@@ -1,4 +1,4 @@
-- hosts: aws_ec2
+- hosts: webservers
   become: true
   become_user: root
   tasks:
