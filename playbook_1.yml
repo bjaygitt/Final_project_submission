@@ -1,4 +1,4 @@
-- hosts: Jenkins-Slave_Dev_1
+- hosts: Ansible_Slave
   become: true
   become_user: root
   tasks:
