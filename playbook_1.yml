@@ -1,4 +1,4 @@
-- hosts: Ansible_Slave
+- hosts: dev_*
   become: true
   become_user: root
   tasks:
@@ -28,7 +28,7 @@
     service: name=apache2 state=restarted
   - name: copy files
     copy:
-      src: "/var/lib/jenkins/workspace/ansibleplaybook/{{ item }}"
+      src: "~/jenkins/workspace/ansibleplaybook/{{ item }}"
       dest: /tmp/docker
       owner: ubuntu
     with_items:
