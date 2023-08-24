@@ -28,7 +28,7 @@
     service: name=apache2 state=restarted
   - name: copy files
     copy:
-      src: "~/jenkins/workspace/ansibleplaybook/{{ item }}"
+      src: "~/jenkins/workspace/myansible/{{ item }}"
       dest: /tmp/docker
       owner: ubuntu
     with_items:
