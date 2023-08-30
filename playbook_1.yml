@@ -1,4 +1,4 @@
-- hosts: dev_*
+- hosts: Webserver
   become: true
   become_user: root
   tasks:
