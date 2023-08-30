@@ -1,5 +1,5 @@
 - name: Playbook to push image to docker hub
-  hosts: webservers
+  hosts: Webservers
   become: true
   gather_facts: false
   tasks:
