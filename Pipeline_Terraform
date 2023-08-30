@@ -1,12 +1,15 @@
 pipeline {
   agent any
   tools {
-  terraform 'myterraform'
+  terraform 'my-terraform'
 }
   stages {
     stage('fetch_latest_code') {
+      agent {
+        label 'my-slave'
+}
       steps {
-        git branch: 'main', url: 'https://github.com/Timojeaga/Final_project_submission.git'
+        git branch: 'main', credentialsId: 'Jenkins-Node', url: 'https://github.com/Timojeaga/Final_project_submission.git'
       }
     }
     stage('Provision Infrastructure with Terraform') {
@@ -18,9 +21,9 @@ pipeline {
           // Change to the Terraform directory
           dir(terraformDir) {
             // Run Terraform commands
-            sh 'sudo terraform init'
-            sh 'sudo terraform plan'
-            sh 'sudo terraform apply -auto-approve'
+            sh 'terraform init'
+            sh 'terraform plan'
+            sh 'terraform apply -auto-approve'
           }
         }
       }
