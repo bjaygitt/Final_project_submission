@@ -4,7 +4,7 @@ shared_credentials_files = ["~/.aws/credentials"]
 profile = "default"
 }
 
-resource "aws_instance" "my_ec2" {
+resource "aws_instance" "myec2" {
   ami           = var.ami
   instance_type = var.instance_type
   key_name      = "Webserver"
