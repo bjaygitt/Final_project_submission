@@ -1,5 +1,5 @@
-- hosts: Webserver
-  become: true
+- hosts: dev_*
+  gather_facts: no
   become_user: root
   tasks:
   - name: install docker sdk
