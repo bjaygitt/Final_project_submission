@@ -1,4 +1,4 @@
-- hosts: dev_*
+- hosts: Webserver_*
   gather_facts: no
   become_user: root
   tasks:
