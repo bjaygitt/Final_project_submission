@@ -1,4 +1,4 @@
-- hosts: dev_*
+- hosts: dev-*
   gather_facts: no
   become_user: root
   tasks:
@@ -28,7 +28,7 @@
     service: name=apache2 state=restarted
   - name: copy files
     copy:
-      src: "~/jenkins/workspace/myansible/{{ item }}"
+      src: "~/home/jenkins/workspace/myansible/{{ item }}"
       dest: /tmp/docker
       owner: ubuntu
     with_items:
