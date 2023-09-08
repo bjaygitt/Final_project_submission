@@ -27,10 +27,12 @@
       state: present
   - name: start apache2 service
     service: name=apache2 state=started
-  - name: copy files
-    copy: src: "~/home/jenkins/workspace/myansible/{{ item }}"
-      dest: /tmp/docker
-      owner: ubuntu
+  - name: Deploy the html code
+    copy: Copy files
+      src: "/home/jenkins/workspace/myansible/{{ item }}" 
+      dest: /tmp/docker  
+      remote_src: yes   
+      owner: root
     with_items:
       - Dockerfile
       - index.html
@@ -45,6 +47,14 @@
       source: build
       build:
         path: /tmp/docker
+
+
+- name: Deploy the html code
+  copy:
+    src: /path/to/local/index.html 
+    dest: /path/on/remote/host/index.html  
+    remote_src: yes
+
 
 
 
