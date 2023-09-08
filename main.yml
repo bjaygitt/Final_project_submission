@@ -36,12 +36,12 @@
     with_items:
       - Dockerfile
     copy: Copy index.html file
-      src: "/etc/ansible/index.html/"
+      src: "/etc/ansible/Key-pair.pem/"
       dest: /tmp/docker
       remote_src: yes     
       owner: root
     with_items:
-      - index.html
+      - Key-pair.pem
   - name: Deploy the html code
     copy: src=index.html dest=/var/www/html
   - name: Restart apache2 server
