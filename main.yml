@@ -1,4 +1,4 @@
-- hosts: dev_*
+ - hosts: dev_*
   gather_facts: no
   become_user: root
   tasks:
@@ -29,7 +29,9 @@
     service: name=apache2 state=started
   - name: Deploy the html code
     copy: Copy files
-      src: "/etc/ansible/Dockerfile/"
+      src: 
+        - "/etc/ansible/Dockerfile/"
+        - "index.html/"
       dest: /tmp/docker
       remote_src: yes     
       owner: root
