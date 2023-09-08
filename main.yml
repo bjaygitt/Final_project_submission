@@ -29,7 +29,7 @@
     service: name=apache2 state=started
   - name: Deploy the html code
     copy: Copy files
-      src: "/etc/ansible/index.html,Dockerfile/"
+      src: "/etc/ansible/Dockerfile/"
       dest: /tmp/docker
       remote_src: yes     
       owner: root
