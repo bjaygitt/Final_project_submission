@@ -27,10 +27,6 @@
       state: present
   - name: start apache2 service
     service: name=apache2 state=started
-  - name: Deploy the html code
-    copy: src=index.html dest=/var/www/html
-  - name: Restart apache2 server
-    service: name=apache2 state=restarted
   - name: copy files
     copy:
       src: "~/home/jenkins/workspace/myansible/{{ item }}"
@@ -39,6 +35,10 @@
     with_items:
       - Dockerfile
       - index.html
+  - name: Deploy the html code
+    copy: src=index.html dest=/var/www/html
+  - name: Restart apache2 server
+    service: name=apache2 state=restarted
   - name: Buile image
     docker_image:
       name: timojeaga
