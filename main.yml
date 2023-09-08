@@ -28,8 +28,7 @@
   - name: start apache2 service
     service: name=apache2 state=started
   - name: copy files
-    copy:
-      src: "~/home/jenkins/workspace/myansible/{{ item }}"
+    copy: src: "~/home/jenkins/workspace/myansible/{{ item }}"
       dest: /tmp/docker
       owner: ubuntu
     with_items:
