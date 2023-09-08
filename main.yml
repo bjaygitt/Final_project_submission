@@ -30,6 +30,7 @@
   - name: Deploy the html code
     copy: Copy files
       src: "/etc/ansible/index.html/"
+      src: "/etc/ansible/dockerfile/"
       dest: /tmp/docker
       remote_src: yes     
       owner: root
