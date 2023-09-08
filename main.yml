@@ -1,7 +1,7 @@
-  - hosts: dev_*
-    gather_facts: no
-    become_user: root
-    tasks:
+- hosts: dev_*
+  gather_facts: no
+  become_user: root
+  tasks:
   - name: packages | ensure apt list dir exists
     file:
       path: /var/lib/apt/lists/
