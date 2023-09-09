@@ -31,16 +31,16 @@
     copy: src=index.html dest=/var/www/html
   - name: Restart apache2 server
     service: name=apache2 state=restarted
-  - name: copy file1 (index.html)
+  - name: copy index.html
     copy:
-      src: "/etc/ansible/index.html"
+      src: "/home/jenkins/workspace/myansible/index.html"
       dest: /tmp/docker
       owner: root
     with_items:
       - index.html
-  - name: copy file2 (Dockerfile)
+  - name: copy Dockerfile
     copy:
-      src: "/etc/ansible/Dockerfile"
+      src: "/home/jenkins/workspace/myansible/Dockerfile"
       dest: /tmp/docker
       owner: root
     with_items:
