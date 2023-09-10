@@ -38,13 +38,13 @@
       owner: root
     with_items:
       - index.html
-  - name: copy Dockerfile
+  - name: copy dockerfile
     copy:
-      src: "/home/jenkins/workspace/myansible/Dockerfile"
+      src: "/home/jenkins/workspace/myansible/dockerfile"
       dest: /tmp/docker
       owner: root
     with_items:
-      - Dockerfile
+      - dockerfile
   - name: Buile image
     docker_image:
       name: timojeaga
