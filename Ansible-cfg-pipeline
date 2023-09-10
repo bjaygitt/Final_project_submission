@@ -1,1 +1,25 @@
+pipeline {
+    agent any
+    tools {
+        ansible 'my-ansible'
+    }
+    stages{
+        stage('Clone Repo into slave'){
+            agent{
+                label 'my-slave'
+            }
+            steps{
+                git branch: 'main', credentialsId: 'f9fff2a7-66c4-46bf-8ddc-06a79be42c07', url: 'https://github.com/Timojeaga/Final_project_submission.git'
+            }
+        }
+        stage("Run Ansible Playbook"){
+            agent{
+                label 'my-slave'
+            }
+            steps{
+                sh 'ansible-playbook /home/jenkins/workspace/myansible/main.yml -i /home/jenkins/workspace/myansible/aws_ec2.yml'
 
+            }
+        }    
+    }
+}
