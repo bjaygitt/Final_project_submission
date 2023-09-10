@@ -40,11 +40,11 @@
       - index.html
   - name: copy dockerfile
     copy:
-      src: "/home/jenkins/workspace/myansible/dockerfile"
+      src: "/home/jenkins/workspace/myansible/Dockerfile"
       dest: /tmp/docker
       owner: root
     with_items:
-      - dockerfile
+      - Dockerfile
   - name: Buile image
     docker_image:
       name: timojeaga
