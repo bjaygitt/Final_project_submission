@@ -41,7 +41,7 @@
   - name: copy dockerfile
     copy:
       src: "/home/jenkins/workspace/myansible/Dockerfile"
-      dest: /tmp/docker
+      dest: /tmp/docke
       owner: root
     with_items:
       - Dockerfile
