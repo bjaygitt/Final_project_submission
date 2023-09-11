@@ -20,6 +20,22 @@ pipeline {
                 sh 'ansible-playbook /home/jenkins/workspace/myansible/main.yml -i /home/jenkins/workspace/myansible/aws_ec2.yml'
 
             }
-        }    
+             
+        }
+        stage('Email') {
+            steps {
+                script {
+                     def mailRecipients = 'timojeaga@gmail.com'
+                     def jobName = currentBuild.fullDisplayName
+                     emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+                     mimeType: 'text/html',
+                     subject: "[Jenkins] ${jobName}",
+                     to: "${mailRecipients}",
+                     replyTo: "${mailRecipients}",
+                     recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                }
+            }
+        }
+        
     }
 }
