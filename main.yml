@@ -34,14 +34,14 @@
   - name: copy index.html
     copy:
       src: "/home/jenkins/workspace/myansible/index.html"
-      dest: /tmp/docker
+      dest: /tmp/doc
       owner: root
     with_items:
       - index.html
   - name: copy dockerfile
     copy:
       src: "/home/jenkins/workspace/myansible/Dockerfile"
-      dest: /tmp/docke
+      dest: /tmp/doc
       owner: root
     with_items:
       - Dockerfile
