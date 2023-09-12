@@ -20,10 +20,13 @@ pipeline {
                 sh 'ansible-playbook /home/jenkins/workspace/myansible/main.yml -i /home/jenkins/workspace/myansible/aws_ec2.yml'
 
             }
-             
-        }
-        stage('Email') {
-            steps {
+            post{
+               failure {
+                     mail to: 'timojeaga@gmail.com',
+                     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                     body: "Something is wrong with ${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                }
+            success{
                 script {
                      def mailRecipients = 'timojeaga@gmail.com'
                      def jobName = currentBuild.fullDisplayName
@@ -35,7 +38,10 @@ pipeline {
                      recipientProviders: [[$class: 'CulpritsRecipientProvider']]
                 }
             }
+            }   
+             
         }
-        
+                
     }
+        
 }
