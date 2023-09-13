@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    stages{
+        stage("Clone git repo"){
+            steps{
+                git branch: 'main', credentialsId: 'AnsibleHost', url: 'https://github.com/Timojeaga/Project1.git'
+            }
+        }
+        stage("Run ansible playbook_1"){
+           steps{
+                ansiblePlaybook credentialsId: 'AnsibleHost', disableHostKeyChecking: true, installation: 'myansible', inventory: 'dev.inv', playbook: 'playbook_1.yml'              
+            }    
+        }
+        stage("Run ansible playbook_2"){
+           steps{
+                ansiblePlaybook credentialsId: 'AnsibleHost', disableHostKeyChecking: true, installation: 'myansible', inventory: 'dev.inv', playbook: 'Docker_push_Image'
+            }
+        }
+    }
+}
