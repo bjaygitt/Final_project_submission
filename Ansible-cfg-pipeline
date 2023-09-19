@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         ansible 'my-ansible'
+        maven 'my-maven'
     }
     stages{
         stage('Clone Repo into slave'){
@@ -12,6 +13,52 @@ pipeline {
                 git branch: 'main', credentialsId: 'f9fff2a7-66c4-46bf-8ddc-06a79be42c07', url: 'https://github.com/Timojeaga/Final_project_submission.git'
             }
         }
+        stage('Compile'){
+            agent{
+                label 'my-slave'
+            }
+            steps{
+                echo 'compiling..'
+                sh 'mvn compile'
+	      }
+          }
+        stage('CodeReview'){
+            agent{
+                label 'my-slave'
+            }
+              steps{
+		          echo 'codeReview'
+                  sh 'mvn pmd:pmd'
+                }
+        }
+        stage('UnitTest'){
+		    agent{
+		        label 'my-slave'
+		    }
+              steps{
+	              echo 'Testing'
+                  sh 'mvn test'
+              }
+          }
+        stage('Code coverage'){
+            agent{
+                label 'my-slave'
+            }
+            steps{
+                withSonarQubeEnv('sonarqube'){
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=my-sonar'
+                }
+            }
+        }
+        stage('Package'){
+		    agent{
+		        label 'my-slave'
+		    }
+              steps{
+		  
+                  sh 'mvn package'
+              }
+          }
         stage("Run Ansible Playbook"){
             agent{
                 label 'my-slave'
