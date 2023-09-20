@@ -9,7 +9,7 @@ resource "aws_instance" "myec2" {
   instance_type = var.instance_type
   key_name = "Key-pair"
 
-  count = 4
+  count = 2
 
   tags = {
     env  = var.env
