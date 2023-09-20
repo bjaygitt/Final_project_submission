@@ -33,18 +33,18 @@
     service: name=apache2 state=restarted
   - name: copy index.html
     copy:
-      src: "/home/jenkins/workspace/myansible/index.html"
+      src: "/home/jenkins/workspace/myansible/{{item}}"
       dest: /tmp/docker
       owner: root
     with_items:
       - index.html
-  - name: copy dockerfile
-    copy:
-      src: "/home/jenkins/workspace/myansible/Dockerfile"
-      dest: /tmp/docker
-      owner: root
-    with_items:
       - Dockerfile
+      - target
+      - src
+      - pom.xml
+      - addressbook_screenshot.png 
+      - build.properties 
+      - build.xml 
   - name: Buile image
     docker_image:
       name: timojeaga
