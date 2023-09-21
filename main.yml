@@ -32,9 +32,9 @@
   - name: Restart apache2 server
     service: name=apache2 state=restarted
   - name: Update the System Packages
-      apt:
-        upgrade: yes
-        update_cache: yes
+    apt:
+      upgrade: yes
+      update_cache: yes
  
   - name: Create a Tomcat User
     user:
