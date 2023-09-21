@@ -72,13 +72,6 @@
       mode: "u+rwx,g+rx,o=rx"
       recurse: yes
       state: directory
- 
-  - name: Copy Tomcat service from local to remote
-    copy:
-      src: opt/tomcat
-      dest: /etc/systemd/system/
-      mode: 0755
- 
   - name: Start and Enable Tomcat 10 on sever
     systemd:
       name: tomcat
