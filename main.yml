@@ -67,10 +67,20 @@
       group: tomcat
       owner: tomcat
     become: yes
+
+  - name: Change ownership of tomcat directory
+      file:
+        path: /opt/tomcat9
+        owner: tomcat
+        group: tomcat
+        mode: "u+rwx,g+rx,o=rx"
+        recurse: yes
+        state: directory
     
   - name: Move files to the /opt/tomcat9 directory
     become: yes
     become_user: tomcat
+    mode: 0755
     shell: "mv /opt/tomcat9/apache*/* /opt/tomcat9"
 
   - name: Creating a service file
