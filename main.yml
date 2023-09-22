@@ -35,11 +35,12 @@
     apt:
       upgrade: yes
       update_cache: yes
+      
   - name: Create a Tomcat User
-      user:
-        name: tomcat
+    user:
+      name: tomcat
   - name: Create a Tomcat Group
-      group:
+    group:
         name: tomcat
         
   - name: Create a Directory /opt/tomcat9
