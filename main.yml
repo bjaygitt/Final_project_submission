@@ -79,7 +79,7 @@
     
   - name: Move files to the /opt/tomcat9 directory
     become: yes
-    become_user: tomcat
+    mode: 0755
     shell: "mv /opt/tomcat9/apache*/* /opt/tomcat9"
 
   - name: Creating a service file
