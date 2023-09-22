@@ -35,39 +35,89 @@
     apt:
       upgrade: yes
       update_cache: yes
- 
+  - name: Create a Tomcat User
+      user:
+        name: tomcat
+  - name: Create a Tomcat Group
+      group:
+        name: tomcat
+        
+  - name: Create a Directory /opt/tomcat9
+    become: yes
+    file:
+      path: /opt/tomcat9
+      state: directory
+      mode: 0755
+      owner: tomcat
+      group: tomcat
+      
   - name: Download and Extract Tomcat
     get_url:
-        url: "http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz" 
-        dest: /opt/
+      url: "http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz" 
+      dest: /opt/
     become: yes
 
   - name: Extract Tomcat
     ansible.builtin.unarchive:
       src: "/opt/apache-tomcat-9.0.56.tar.gz"
-      dest: "/opt/"
+      dest: "/opt/tomcat9"
+      mode: 0755
       remote_src: yes
+      group: tomcat
+      owner: tomcat
     become: yes
-
-  - name: Configure Tomcat Users
-    template:
-      src: tomcat-users.xml.j2
-      dest: /opt/apache-tomcat-9.0.56/conf/tomcat-users.xml
+    
+  - name: Move files to the /opt/tomcat9 directory
     become: yes
+    become_user: tomcat
+    shell: "mv /opt/tomcat9/apache*/* /opt/tomcat9"
 
-  - name: Start Tomcat Service
+  - name: Creating a service file
+    become: yes
+    copy: 
+      content: |-
+        [Unit]
+        Description=Tomcat Service
+        Requires=network.target
+        After=network.target
+
+        [Service]
+        Type=forking
+        User=tomcat
+        Environment="CATALINA_PID=/opt/tomcat8/logs/tomcat.pid"
+        Environment="CATALINA_BASE=/opt/tomcat8"
+        Environment="CATALINA_HOME=/opt/tomcat8"
+        Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+        ExecStart=/opt/tomcat8/bin/startup.sh
+        ExecStop=/opt/tomcat8/bin/shutdown.sh
+        Restart=on-abnormal
+
+        [Install]
+        WantedBy=multi-user.target
+      dest: /etc/systemd/system/tomcat.service
+
+  - name: Reload the SystemD to re-read configurations
+    become: yes
+    systemd:
+      daemon-reload: yes
+
+  - name: Enable the tomcat service and start
+    become: yes
     systemd:
       name: tomcat
       enabled: yes
       state: started
-    become: yes
 
-  - name: Deploy Web Application
-    copy:
-        src: your_webapp.war  # Provide the path to your web application WAR file
-        dest: /opt/apache-tomcat-9.0.56/webapps/ 
-    become: yes
-  
+  - name: Connect to Tomcat server on port 8080 and check status 200 - Try 5 times
+    tags: test
+    uri:
+      url: http://localhost:8080
+    register: result
+    until: "result.status == 200"
+    retries: 5
+    delay: 10
+ 
   - name: copy index.html
     copy:
       src: "/home/jenkins/workspace/myansible/{{item}}"
