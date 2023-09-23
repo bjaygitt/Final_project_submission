@@ -65,7 +65,7 @@
     unarchive:
       src: "/usr/local/apache-tomcat-10.0.4.tar.gz"
       dest: /usr/local
-        remote_src: yes
+      remote_src: yes
   - name: Renaming tomcat home
     command: mv /usr/local/apache-tomcat-10.0.4/usr/local/tomcat
   - name: Changing port
