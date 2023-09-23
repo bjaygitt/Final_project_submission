@@ -42,7 +42,7 @@
   - name: Set the shell for tomcat to /bin/bash
     user:
       name: tomcat
-      shell: -s/bin/bash
+      shell: /bin/bash
       
   - name: Create a Tomcat Group
     group:
