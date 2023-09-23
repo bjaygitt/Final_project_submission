@@ -39,7 +39,11 @@
   - name: Create a Tomcat User
     user:
       name: tomcat
- 
+  - name: Set the shell for tomcat to /bin/bash
+    user:
+      name: tomcat
+      shell: -s/bin/bash
+      
   - name: Create a Tomcat Group
     group:
       name: tomcat
