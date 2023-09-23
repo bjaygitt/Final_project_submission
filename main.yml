@@ -32,55 +32,59 @@
   - name: Restart apache2 server
     service: name=apache2 state=restarted
   - name: Update the System Packages
-    apt:
-      upgrade: yes
-      update_cache: yes
-      
+      apt:
+        upgrade: yes
+        update_cache: yes
+ 
   - name: Create a Tomcat User
     user:
       name: tomcat
+ 
   - name: Create a Tomcat Group
     group:
-        name: tomcat
-        
-  - name: Create a Directory /opt/tomcat9
-    become: yes
+      name: tomcat
+ 
+  - name: Install JAVA
+    apt:
+      name: default-jdk
+      state: present
+ 
+ 
+  - name: Create a Tomcat Directory
     file:
-      path: /opt/tomcat9
-      state: directory
-      mode: 0755
+      path: /opt/tomcat10
       owner: tomcat
       group: tomcat
-      
-  - name: Download and Extract Tomcat
-    get_url:
-      url: "http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz" 
-      dest: /opt/
-    become: yes
-
-  - name: Extract Tomcat
-    ansible.builtin.unarchive:
-      src: "/opt/apache-tomcat-9.0.56.tar.gz"
-      dest: "/opt/tomcat9"
-      mode: 0755
+      mode: 755
+      recurse: yes
+ 
+  - name: download & unarchive tomcat10 
+    unarchive:
+      src: https://mirrors.estointernet.in/apache/tomcat/tomcat-10/v10.0.4/bin/apache-tomcat- 10.0.4.tar.gz
+      dest: /opt/tomcat10
       remote_src: yes
-      group: tomcat
-      owner: tomcat
-    become: yes
-
+      extra_opts: [--strip-components=1]
+ 
   - name: Change ownership of tomcat directory
     file:
-      path: /opt/tomcat9
+      path: /opt/tomcat10
       owner: tomcat
       group: tomcat
       mode: "u+rwx,g+rx,o=rx"
       recurse: yes
       state: directory
-    
-  - name: Move files to the /opt/tomcat9 directory
-    become: yes
-    mode: 0755
-    shell: "mv /opt/tomcat9/apache*/* /opt/tomcat9"
+ 
+  - name: Copy Tomcat service from local to remote
+    copy:
+      src: /opt/tomcat10/apache*
+      dest: /opt/tomcat10
+      mode: 0755
+ 
+  - name: Start and Enable Tomcat 10 on sever
+    systemd:
+      name: tomcat
+      state: started
+      daemon_reload: true 
 
   - name: Creating a service file
     become: yes
