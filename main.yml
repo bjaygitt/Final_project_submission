@@ -49,7 +49,6 @@
       name: default-jdk
       state: present
  
- 
   - name: Create a Tomcat Directory
     file:
       path: /opt/tomcat10
@@ -57,34 +56,36 @@
       group: tomcat
       mode: 755
       recurse: yes
- 
-  - name: download & unarchive tomcat10 
+
+  - name: Downloading tomcat
+    get_url:
+      url: "http://archive.apache.org/dist/tomcat/tomcat-10/v10.0.4/bin/apache-tomcat-10.0.4.tar.gz"
+      dest: /usr/local
+  - name: Extracting tomcat
     unarchive:
-      src: http://archive.apache.org/dist/tomcat/tomcat-10/v10.0.4/bin/apache-tomcat-10.0.4.tar.gz
-      dest: /opt/tomcat10
-      remote_src: yes
-      extra_opts: [--strip-components=1]
- 
-  - name: Change ownership of tomcat directory
-    file:
-      path: /opt/tomcat10
-      owner: tomcat
-      group: tomcat
-      mode: "u+rwx,g+rx,o=rx"
-      recurse: yes
-      state: directory
- 
-  - name: Copy Tomcat service from local to remote
-    copy:
-      src: /opt/tomcat10/apache*
-      dest: /opt/tomcat10
-      mode: 0755
- 
-  - name: Start and Enable Tomcat 10 on sever
-    systemd:
-      name: tomcat
-      state: started
-      daemon_reload: true 
+      src: "/usr/local/apache-tomcat-10.0.4.tar.gz"
+      dest: /usr/local
+        remote_src: yes
+  - name: Renaming tomcat home
+    command: mv /usr/local/apache-tomcat-10.0.4/usr/local/tomcat
+  - name: Changing port
+    template:
+      src: server.xml.j2
+      dest: /usr/local/tomcat/conf/server.xml
+  - name: Updating users and role
+    template:
+      src: tomcat-users.xml
+      dest: /usr/local/tomcat/conf/tomcat-users.xml
+  - name: Updating context xml restriction
+    template:
+      src: context-manager.xml
+      dest: /usr/local/tomcat/webapps/manager/META-INF/context.xml
+  - name: Updating restriction for host manager context
+    template:
+      src: context-hostmanager.xml
+      dest: /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
+  - name: Starting tomcat
+    shell: nohup /usr/local/tomcat/bin/startup.sh &
 
   - name: Creating a service file
     become: yes
