@@ -101,13 +101,6 @@
     systemd:
       daemon-reload: yes
 
-  - name: Enable the tomcat service and start
-    become: yes
-    systemd:
-      name: tomcat
-      enabled: yes
-      state: started
-
   - name: Connect to Tomcat server on port 8080 and check status 200 - Try 5 times
     tags: test
     uri:
