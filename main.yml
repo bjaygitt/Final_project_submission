@@ -134,6 +134,16 @@
       - addressbook_screenshot.png 
       - build.properties 
       - build.xml 
+      
+   - name: copy addressbook into tomcat10 webapps directory
+    copy:
+      src: "/tmp/docker/{{item}}"
+      dest: /opt/tomcat10/webapps
+      owner: root
+    with_items:
+      - addressbook 
+      - addressbook.war
+      
   - name: Buile image
     docker_image:
       name: timojeaga
@@ -141,6 +151,7 @@
       source: build
       build:
         path: /tmp/docker
+        
   - name: creating docker image
     command: docker build -t myproject .
     args:
