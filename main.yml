@@ -135,7 +135,7 @@
       - build.properties 
       - build.xml 
       
-   - name: copy addressbook into tomcat10 webapps directory
+  - name: copy addressbook into tomcat10 webapps directory
     copy:
       src: "/tmp/docker/{{item}}"
       dest: /opt/tomcat10/webapps
