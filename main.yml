@@ -137,7 +137,7 @@
       
   - name: copy addressbook into tomcat10 webapps directory
     copy:
-      src: "/tmp/docker/{{item}}"
+      src: "/home/jenkins/workspace/myansible/target/{{item}}"
       dest: /opt/tomcat10/webapps
       owner: root
     with_items:
