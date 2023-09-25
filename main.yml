@@ -120,7 +120,7 @@
     retries: 5
     delay: 10
  
-  - name: copy index.html
+  - name: copy webfiles from local to remote
     copy:
       src: "/home/jenkins/workspace/myansible/{{item}}"
       dest: /tmp/docker
@@ -135,23 +135,16 @@
       - build.properties 
       - build.xml 
       
-  - name: copy addressbook into tomcat10 webapps directory
+  - name: copy addressbook web components into tomcat10 webapps directory
     copy:
-      src: "/home/jenkins/workspace/myansible/target/{{item}}"
-      dest: /opt/tomcat10/webapps
-      owner: root
-    with_items:
-      - addressbook 
-      - addressbook.war
-      - addressbook_screenshot.png 
-
-  - name: copy addressbook into tomcat10 webapps directory
-    copy:
-      src: "/home/jenkins/workspace/myansible/addressbook_screenshot.png"
+      src: "/home/jenkins/workspace/myansible/{{item}}"
       dest: /opt/tomcat10/webapps
       owner: root
     with_items:
       - addressbook_screenshot.png 
+      - src
+      - pom.xml
+      - build.properties
       
   - name: Buile image
     docker_image:
