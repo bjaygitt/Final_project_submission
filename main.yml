@@ -137,7 +137,7 @@
       
   - name: copy addressbook web components into tomcat10 webapps directory
     copy:
-      src: "/home/jenkins/workspace/myansible/target{{item}}"
+      src: "/tmp/docker/target/{{item}}"
       dest: /opt/tomcat10/webapps
       owner: root
     with_items:
