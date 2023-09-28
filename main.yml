@@ -133,17 +133,7 @@
       - pom.xml
       - addressbook_screenshot.png 
       - build.properties 
-      - build.xml 
-      
-  - name: copy addressbook web components into tomcat10 webapps directory
-    copy:
-      src: "/tmp/docker/target/{{item}}"
-      dest: /opt/tomcat10/webapps
-      owner: root
-    with_items:
-      - addressbook_screenshot.png 
-      - addressbook
-      - addressbook.war
+      - build.xml
       
   - name: Buile image
     docker_image:
