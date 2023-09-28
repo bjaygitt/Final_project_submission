@@ -153,5 +153,3 @@
       password: Jayden123&    
   - name: adding tag to image
     command: docker tag myproject timojeaga/myproject
-  - name: push image to dockerhub
-    command: docker push timojeaga/myproject
