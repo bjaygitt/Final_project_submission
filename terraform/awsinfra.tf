@@ -17,15 +17,15 @@ resource "aws_instance" "myec2" {
 
   }
 }
-resource "aws_key_pair" "TF_key" {
-  key_name   = "TF_key"
+resource "aws_key_pair" "New_TF-key" {
+  key_name   = "New_TF_key"
   public_key = tls_private_key.rsa.public_key_openssh
 }
 resource "tls_private_key" "rsa" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
-resource "local_file" "TF-key" {
+resource "local_file" "New_TF-key" {
   content  = tls_private_key.rsa.private_key_pem
   filename = "tfkey"
 }
