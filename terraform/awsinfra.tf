@@ -17,6 +17,16 @@ resource "aws_instance" "myec2" {
 
   }
 }
+resource "aws_instance" "prod_servers" {
+  count         = 3
+  ami           = "ami-0ea18256de20ecdfc" 
+  instance_type = "m4.large"             
+  tags = {
+    Name = "prod-server-${count.index + 1}"
+    Environment = "prod"
+  }
+}
+
 resource "aws_key_pair" "New_TF-key" {
   key_name   = "New_TF_key"
   public_key = tls_private_key.rsa.public_key_openssh
