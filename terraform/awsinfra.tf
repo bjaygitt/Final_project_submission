@@ -20,10 +20,30 @@ resource "aws_instance" "myec2" {
 resource "aws_instance" "prod_servers" {
   count         = 1
   ami           = "ami-0ea18256de20ecdfc" 
-  instance_type = "m4.large"             
+  instance_type = "t2.micro"             
   tags = {
-    Name = "prod-server-${count.index + 1}"
+    Name = "Prod-Server-${count.index + 1}"
     Environment = "prod"
+  }
+}
+
+resource "aws_instance" "QA-Server" {
+  count         = 1
+  ami           = "ami-0ea18256de20ecdfc" 
+  instance_type = "t2.micro"             
+  tags = {
+    Name = "QA-Server-${count.index + 1}"
+    Environment = "QA"
+  }
+}
+
+resource "aws_instance" "Staging_Servers" {
+  count         = 1
+  ami           = "ami-0ea18256de20ecdfc" 
+  instance_type = "t2.micro"             
+  tags = {
+    Name = "Staging-Server-${count.index + 1}"
+    Environment = "Staging"
   }
 }
 
