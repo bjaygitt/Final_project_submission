@@ -3,9 +3,17 @@ regions:
   - "ca-central-1"
 keyed_groups:
   - key: tags.Name
-    prefix: dev
+    prefix: 
+    - Dev
+    - Prod
+    - Staging
+    - QA
 filters:
-  tag:Name: dev-*
+  tag:Name: 
+  - dev-*
+  - QA-*
+  - Prod
+  - Staging-*
   instance-state-name : running
 compose:
   ansible_host: public_ip_address
