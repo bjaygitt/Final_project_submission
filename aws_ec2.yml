@@ -10,10 +10,10 @@ keyed_groups:
     - QA
 filters:
   tag:Name: 
-  - dev-*
-  - QA-*
-  - Prod
-  - Staging-*
+  - Dev_*
+  - QA_*
+  - Prod_*
+  - Staging_*
   instance-state-name : running
 compose:
   ansible_host: public_ip_address
