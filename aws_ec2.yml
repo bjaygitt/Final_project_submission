@@ -3,7 +3,9 @@ regions:
   - "ca-central-1"
 keyed_groups:
   - key: tags.Name
-    prefix: dev
+    prefix: 
+      - dev
+      - QA
 filters:
   tag:Name: 
         - dev-*
