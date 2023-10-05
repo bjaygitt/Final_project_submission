@@ -9,7 +9,7 @@ resource "aws_instance" "myec2" {
   instance_type = var.instance_type
   key_name = "Key-pair"
 
-  count = 2
+  count = 1
 
   tags = {
     env  = var.env
@@ -18,7 +18,7 @@ resource "aws_instance" "myec2" {
   }
 }
 resource "aws_instance" "prod_servers" {
-  count         = 3
+  count         = 1
   ami           = "ami-0ea18256de20ecdfc" 
   instance_type = "m4.large"             
   tags = {
