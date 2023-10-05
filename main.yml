@@ -1,8 +1,4 @@
-- hosts: 
-  - Dev_*
-  - Prod_*
-  - QA_*
-  - Staging_*
+- hosts: Dev_*
   gather_facts: no
   become_user: root
   tasks:
