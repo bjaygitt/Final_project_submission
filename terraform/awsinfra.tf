@@ -22,7 +22,7 @@ resource "aws_instance" "prod_servers" {
   ami           = "ami-0ea18256de20ecdfc" 
   instance_type = "t2.micro"             
   tags = {
-    Name = "Prod-Server-${count.index + 1}"
+    Name = "Prod-${count.index + 1}"
     Environment = "prod"
   }
 }
@@ -32,7 +32,7 @@ resource "aws_instance" "QA-Server" {
   ami           = "ami-0ea18256de20ecdfc" 
   instance_type = "t2.micro"             
   tags = {
-    Name = "QA-Server-${count.index + 1}"
+    Name = "QA-${count.index + 1}"
     Environment = "QA"
   }
 }
@@ -42,7 +42,7 @@ resource "aws_instance" "Staging_Servers" {
   ami           = "ami-0ea18256de20ecdfc" 
   instance_type = "t2.micro"             
   tags = {
-    Name = "Staging-Server-${count.index + 1}"
+    Name = "Staging-${count.index + 1}"
     Environment = "Staging"
   }
 }
