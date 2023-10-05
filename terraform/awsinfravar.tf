@@ -10,7 +10,7 @@ default = "t3.micro"
 }
 variable "env" {
 
-default = "Dev"
+default = "dev"
 }
 
 
