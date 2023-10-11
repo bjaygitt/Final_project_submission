@@ -4,10 +4,8 @@ regions:
 keyed_groups:
   - key: tags.Name
     prefix: dev
-    prefix: QA
 filters:
   tag:Name: dev-*
-  tag:Name: QA-*
   instance-state-name : running
 compose:
   ansible_host: public_ip_address
