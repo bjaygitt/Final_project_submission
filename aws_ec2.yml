@@ -6,6 +6,6 @@ keyed_groups:
     prefix: dev
 filters:
   tag:Name: dev-*
-  instance-state-name : running
+  instance-state-name: running
 compose:
   ansible_host: public_ip_address
