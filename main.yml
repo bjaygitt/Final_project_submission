@@ -1,6 +1,4 @@
-- hosts: 
-    - dev_*
-    - QA_*
+- hosts: dev_*
   gather_facts: no
   become_user: root
   tasks:
