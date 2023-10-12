@@ -47,15 +47,15 @@ resource "aws_instance" "Staging_Servers" {
   }
 }
 
-resource "aws_key_pair" "New_TF-key" {
-  key_name   = "New_TF_key"
+resource "aws_key_pair" "Nw_TF-key" {
+  key_name   = "Nw_TF_key"
   public_key = tls_private_key.rsa.public_key_openssh
 }
 resource "tls_private_key" "rsa" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
-resource "local_file" "New_TF-key" {
+resource "local_file" "Nw_TF-key" {
   content  = tls_private_key.rsa.private_key_pem
   filename = "tfkey"
 }
