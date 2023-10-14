@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+  tools {
+  terraform 'my-terraform'
+}
+  stages {
+    stage('fetch_latest_code') {
+      agent {
+        label 'my-slave'
+}
+      steps {
+        git branch: 'main', credentialsId: 'Jenkins-Node', url: 'https://github.com/Timojeaga/Final_project_submission.git'
+      }
+    }
+    stage('Provision Infrastructure with Terraform') {
+      steps {
+        script {
+          // Define Terraform directory
+          def terraformDir = '/var/lib/jenkins/workspace/myterraform/terraform/'
+
+          // Change to the Terraform directory
+          dir(terraformDir) {
+            // Run Terraform commands
+            sh 'terraform init'
+            sh 'terraform plan'
+            sh 'terraform apply -auto-approve'
+          }
+        }
+      }
+    }
+  }
+}

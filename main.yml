@@ -1,0 +1,155 @@
+- hosts: dev_*
+  gather_facts: no
+  become_user: root
+  tasks:
+  - name: packages | ensure apt list dir exists
+    file:
+      path: /var/lib/apt/lists/
+      state: directory
+      mode: 0755
+  - name: install docker sdk
+    apt:
+      name: python3-pip, docker.io
+      update_cache: yes
+      state: present
+      cache_valid_time: 3600
+  - name: install python3-docker
+    pip:
+      name: docker
+      state: present
+  - name: create file
+    file:
+      path: /tmp/docker
+      state: directory
+  - name: install Apache HTTP Server
+    apt:
+      name: apache2
+      state: present
+  - name: start apache2 service
+    service: name=apache2 state=started
+  - name: Deploy the html code
+    copy: src=index.html dest=/var/www/html
+  - name: Restart apache2 server
+    service: name=apache2 state=restarted
+  - name: Update the System Packages
+    apt:
+      upgrade: yes
+      update_cache: yes
+ 
+  - name: Create a Tomcat User
+    user:
+      name: tomcat
+  - name: Set the shell for tomcat to /bin/bash
+    user:
+      name: tomcat
+      shell: /bin/bash
+      
+  - name: Create a Tomcat Group
+    group:
+      name: tomcat
+ 
+  - name: Install JAVA
+    apt:
+      name: default-jdk
+      state: present
+ 
+  - name: Create a Tomcat Directory
+    file:
+      path: /opt/tomcat10
+      owner: tomcat
+      group: tomcat
+      mode: 755
+      recurse: yes
+
+  - name: Downloading tomcat
+    get_url:
+      url: "http://archive.apache.org/dist/tomcat/tomcat-10/v10.0.4/bin/apache-tomcat-10.0.4.tar.gz"
+      dest: /usr/local
+  - name: Extracting tomcat
+    unarchive:
+      src: "/usr/local/apache-tomcat-10.0.4.tar.gz"
+      dest: /usr/local
+      remote_src: yes
+  - name: Remove existing tomcat directory
+    become: yes
+    command: rm -rf /usr/local/tomcat
+  
+  - name: Move Tomcat directory
+    become: yes
+    command: mv /usr/local/apache-tomcat-10.0.4 /usr/local/tomcat
+
+  - name: Start tomcat
+    shell: nohup /usr/local/tomcat/bin/startup.sh &
+
+  - name: Creating a service file
+    become: yes
+    copy: 
+      content: |-
+        [Unit]
+        Description=Tomcat Service
+        Requires=network.target
+        After=network.target
+
+        [Service]
+        Type=forking
+        User=tomcat
+        Environment="CATALINA_PID=/opt/tomcat10/logs/tomcat.pid"
+        Environment="CATALINA_BASE=/opt/tomcat10"
+        Environment="CATALINA_HOME=/opt/tomcat10"
+        Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+        ExecStart=/opt/tomcat10/bin/startup.sh
+        ExecStop=/opt/tomcat10/bin/shutdown.sh
+        Restart=on-abnormal
+
+        [Install]
+        WantedBy=multi-user.target
+      dest: /etc/systemd/system/tomcat.service
+
+  - name: Reload the SystemD to re-read configurations
+    become: yes
+    systemd:
+      daemon-reload: yes
+
+  - name: Connect to Tomcat server on port 8080 and check status 200 - Try 5 times
+    tags: test
+    uri:
+      url: http://localhost:8080
+    register: result
+    until: "result.status == 200"
+    retries: 5
+    delay: 10
+ 
+  - name: copy webfiles from local to remote
+    copy:
+      src: "/var/lib/jenkins/workspace/myansible/{{item}}"
+      dest: /tmp/docker
+      owner: root
+    with_items:
+      - index.html
+      - Dockerfile
+      - target
+      - src
+      - pom.xml
+      - addressbook_screenshot.png 
+      - build.properties 
+      - build.xml
+      
+  - name: Buile image
+    docker_image:
+      name: timojeaga
+      tag: v1.0
+      source: build
+      build:
+        path: /tmp/docker
+        
+  - name: creating docker image
+    command: docker build -t myproject .
+    args:
+      chdir: /tmp/docker
+  - name: log in to Docker Hub
+    docker_login:
+      username: timojeaga
+      password: Jayden123&    
+  - name: adding tag to image
+    command: docker tag myproject timojeaga/myproject
