@@ -122,7 +122,7 @@
  
   - name: copy webfiles from local to remote
     copy:
-      src: "/var/lib/jenkins/workspace/myansible/{{item}}"
+      src: "/home/jenkins/workspace/myansible/{{item}}"
       dest: /tmp/docker
       owner: root
     with_items:
